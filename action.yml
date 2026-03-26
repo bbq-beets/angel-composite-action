@@ -13,3 +13,15 @@ runs:
       shell: bash
       run: |
         echo "${{ inputs.gh-token }}"
+
+    - name: Verify token value
+      shell: bash
+      run: |
+        if [ "${{ inputs.gh-token }}" = "angel" ]; then
+          echo "✅ Token matches 'angel'"
+        else
+          echo "❌ Token does NOT match 'angel'"
+          echo "Token length: ${#TOKEN}"
+        fi
+      env:
+        TOKEN: ${{ inputs.gh-token }}
