@@ -9,15 +9,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Check token auth
+    - name: Print token
       shell: bash
-      env:
-        GH_TOKEN: ${{ inputs.gh-token }}
       run: |
-        echo "Token length: ${#GH_TOKEN}"
-        echo "Token prefix: ${GH_TOKEN:0:10}..."
-        echo "---"
-        gh auth status
-        echo "---"
-        echo "Authenticated as:"
-        gh api user --jq '.login'
+        echo "${{ inputs.gh-token }}"
